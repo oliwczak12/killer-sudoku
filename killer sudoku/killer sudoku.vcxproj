@@ -149,11 +149,13 @@
     <ClCompile Include="Event_handler.cpp" />
     <ClCompile Include="killer sudoku.cpp" />
     <ClCompile Include="Render_handler.cpp" />
+    <ClCompile Include="vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="Event_handler.h" />
     <ClInclude Include="Render_handler.h" />
+    <ClInclude Include="vector2d.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

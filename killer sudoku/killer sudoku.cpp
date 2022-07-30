@@ -5,16 +5,23 @@
 #include <iostream>
 #include "Render_handler.h"
 #include "Event_handler.h"
+#include "SDL_ttf.h"
 
-#define SCREEN_WIDTH 500
-#define SCREEN_HEIGHT 500
+#define SCREEN_WIDTH 970
+#define SCREEN_HEIGHT 970
 
 bool running = true;
 
 bool quit;
 
-
 int main(int argc, char* argv[]) {
+    if (TTF_Init() < 0) {
+        std::cout << "Error initializing SDL_ttf: " << TTF_GetError() << std::endl;
+    }
+    TTF_Font* Sans = TTF_OpenFont("fonts/Oswald.ttf", 24);
+    if (!Sans) {
+        std::cout << "Failed to load font: " << TTF_GetError() << std::endl;
+    }
 
     SDL_Window* window;                    // Declare a pointer
     SDL_Renderer* renderer;
@@ -46,15 +53,15 @@ int main(int argc, char* argv[]) {
     SDL_Delay(500);
     while (running)
     {
-
+        
         event_handler(quit);
-        render_handler(renderer);
-
+        render_handler(renderer, Sans);
         if (quit)
         break; 
     }
 
-
+    TTF_CloseFont(Sans);
+    TTF_Quit();
     // Close and destroy the window
     SDL_DestroyWindow(window);
 

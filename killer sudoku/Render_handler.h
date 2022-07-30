@@ -1,3 +1,6 @@
 #pragma once
 #include "SDL.h"
-void render_handler(SDL_Renderer* renderer);
+#include "SDL_ttf.h"
+
+
+void render_handler(SDL_Renderer* renderer, TTF_Font* Sans);

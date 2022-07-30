@@ -1,6 +1,7 @@
 #include "Event_handler.h"
 #include "SDL.h"
 
+
 void event_handler(bool &quit)
 {
     SDL_Event event;
@@ -10,6 +11,10 @@ void event_handler(bool &quit)
         if (event.type == SDL_QUIT)
         {
             quit = true;
+        }
+        if (event.type == SDL_MOUSEBUTTONDOWN)
+        {
+            SDL_Log("bang");
         }
     }
 }
