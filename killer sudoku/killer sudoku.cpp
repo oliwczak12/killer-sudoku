@@ -52,9 +52,10 @@ int main(int argc, char* argv[]) {
 
     SDL_Delay(500);
     while (running)
-    {
-        
+    {  
+
         event_handler(quit);
+        //przenieœæ render_handler do event handler tak ¿eby renderowa³o siê tylko po kliknieciu
         render_handler(renderer, Sans);
         if (quit)
         break; 

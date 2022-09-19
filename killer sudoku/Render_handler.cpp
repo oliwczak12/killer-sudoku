@@ -4,9 +4,10 @@
 #include <iostream>
 #include <vector>
 #include "SDL_ttf.h"
-#include "SDL_gfx"
+#include "SDL2_gfxPrimitives.h"
 
-
+double min = 0;
+double best_line = 1000;
 double distanceBetweenTwoPoints(double x, double y, double a, double b) {
 	return sqrt(pow(x - a, 2) + pow(y - b, 2));
 }
@@ -15,8 +16,7 @@ void lines(SDL_Renderer* renderer,int x,int y) {
 	int offset_i = 0;
 	int offset_j = 0;
 	int default_value = 0;
-	double min = 0;
-	double best_line = 0;
+	
 	for (int i = 0; i < 9; i++)
 	{
 		if (i % 3 == 0 && i != 0) offset_i += 10;
@@ -28,8 +28,11 @@ void lines(SDL_Renderer* renderer,int x,int y) {
 			if (j % 3 == 0 && j != 0) offset_j += 10;
 			else if (j % 3 != 0)offset_j += 2;
 			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-			if (min = distanceBetweenTwoPoints((offset_j + 10 + 100 * j) + 50, (offset_i + 10 + 100 * i) + 50, x, y)) {
+			min = distanceBetweenTwoPoints((offset_j + 10 + 100 * j) + 50, (offset_i + 10 + 100 * i) + 50, x, y);
+			if(min < 50* 1.31421356237) {
 				SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+				
+				SDL_Log("%f",min);
 			}
 
 			SDL_RenderDrawLine(renderer, (offset_j + 10 + 100 * j)+50, (offset_i + 10 + 100 * i)+50, x, y);
@@ -68,15 +71,16 @@ void mouse_pos(SDL_Renderer* renderer) {
 		offset_j = 0;
 	}
 }
+ 
 
 void render_handler(SDL_Renderer* renderer, TTF_Font* Sans)
 {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
-
-
+	
+	//thickLineColor(renderer, 0, 0, 500, 500, 20, 0);
 	grid(renderer,Sans);
 
-	mouse_pos(renderer);
+	//mouse_pos(renderer);
 	SDL_RenderPresent(renderer);
 }
